@@ -18,7 +18,6 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.*;
 import java.util.stream.Stream;
-
 public class DynamicCompiler {
     private static final Logger log = LoggerFactory.getLogger(DynamicCompiler.class);
     private final JavaCompiler javaCompiler;
@@ -135,7 +134,8 @@ public class DynamicCompiler {
 
         errors.clear();
         warnings.clear();
-
+       /* options.add("-javaagent:");
+        options.add("spring-instrument-6.1.14.jar");*/
         if (!classpath.trim().isEmpty()) {
             options.add("-classpath");
             options.add(classpath);

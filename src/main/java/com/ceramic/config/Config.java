@@ -4,6 +4,8 @@ import com.ceramic.compiler.compiler.DynamicCompiler;
 import io.vertx.core.Vertx;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.EnableLoadTimeWeaving;
 
 /**
  * @author: B_Raeisifard
@@ -12,11 +14,12 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
-//@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy(proxyTargetClass = false)
+@EnableLoadTimeWeaving
 public class Config {
     @Bean
     public DynamicCompiler dynamicCompiler() {
-        return new DynamicCompiler();
+        return new DynamicCompiler(classLoader());
     }
 
     @Bean
